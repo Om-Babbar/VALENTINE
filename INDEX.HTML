@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine?</title>
     <style>
+/* Mobile Warning Style - Covers the screen if a phone is detected */
+#mobile-warning {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffc8dd;
+    color: #d63384;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
         body {
             display: flex;
             justify-content: center;
@@ -71,7 +88,13 @@
     </style>
 </head>
 <body>
-
+<div id="mobile-warning">
+    <div>
+        <h1 style="font-size: 3rem;">Wait! ✋❤️</h1>
+        <p style="font-size: 1.5rem;">This surprise is special and only works on a <strong>Laptop or Desktop</strong>.</p>
+        <p>Please switch to a computer to see it!</p>
+    </div>
+</div>
     <audio id="valentineMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
@@ -94,6 +117,10 @@
     </div>
 
     <script>
+    // Mobile Detection Logic
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    document.getElementById('mobile-warning').style.display = 'flex';
+    }
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         const mainContent = document.getElementById('main-content');
